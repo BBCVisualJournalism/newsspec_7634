@@ -1,0 +1,29 @@
+$anchor-active: #f00;
+
+@import "news_special/defaults";
+@import "navigation";
+@import "table";
+
+/* use proper box model */
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/* Self clear automatically */
+.selfclear:before, .selfclear:after {
+    content: "";
+    display: table;
+} 
+.selfclear:after {
+    clear: both;
+}
+.selfclear {
+    zoom: 1; /* For IE 6/7 (trigger hasLayout) */
+}
+
+body {
+    font-size: 16px;
+    color: #404040;
+}

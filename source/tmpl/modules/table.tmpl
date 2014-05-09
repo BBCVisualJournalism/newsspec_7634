@@ -1,0 +1,92 @@
+<%
+    var premierLeague = getRowsBetween(1, 20),
+        championship  = getRowsBetween(21, 44),
+        league1       = getRowsBetween(45, 68),
+        league2       = getRowsBetween(69, 89);
+%>
+
+<table id="<%= showColumn %>" class="table">
+    <%
+        makeTable(premierLeague, 'The Premier League health areas', 'premier')
+    %>
+    <%
+        makeTable(championship, 'Championship health areas', 'championship')
+    %>
+    <%
+        makeTable(league1, 'League 1 health areas', 'leagueOne')
+    %>
+    <%
+        makeTable(league2, 'League 2 health areas', 'leagueTwo')
+    %>
+</table>
+
+<%
+    function getRowsBetween (startIndex, endIndex) {
+        var dataSlice = [];
+        for (var i = startIndex; i <= endIndex; i++) {
+            // obj.data gets the data object passed in by index.html.tmpl, e.g. data.bmi
+            dataSlice.push(obj.data[i]);
+        }
+        return dataSlice;  
+    }
+
+    function makeTable (league, title, leagueClass) {
+%>
+    <tr>
+        <th colspan="3" class="table__title table__title--<%= leagueClass %>">
+            <%= title %>
+        </th>
+    </tr>
+    <tr>
+        <th class="table__header table__column--rank">
+            #
+        </th>
+        <th class="table__header table__column--club">
+            Nearest club
+        </th>
+        <th class="table__header table__column--metric">
+            <%= obj.columnTitle %>
+        </th>
+    </tr>
+    <%
+        var position = 0,
+            lastValue = false,
+            duplicateValues = 0;
+
+        _.forEach(league, function (club) {
+
+            var columnValue = club[obj.showColumn];
+            // round to 1 decimal place
+            columnValue = Math.round(columnValue * 100) / 100;
+            // forces 1 decimal place on round numbers (e.g. 271 to 271.0)
+            columnValue = columnValue.toFixed(2);
+    %>
+        <tr>
+            <td class="table__column table__column--rank">
+                <%
+                    if (columnValue == lastValue) {
+                        duplicateValues++;
+                    } else {
+                        position = position + 1 + duplicateValues;
+                        duplicateValues = 0;
+                        lastValue = columnValue;
+                    }
+                    print(position);
+                %>
+            </td>
+            <td class="table__column table__column--club">
+                <%= club.club %>
+            </td>
+            <td class="table__column table__column--metric">
+                <%= columnValue %>
+            </td>
+        </tr>
+    <% 
+        });
+    %>
+    <tr>
+        <td colspan="3" class="table__spacer"></td>
+    </tr>
+<%
+    }
+%>

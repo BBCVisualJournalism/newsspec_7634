@@ -1,0 +1,37 @@
+<%= include('includes/top.tmpl') %>
+
+    <div class="main">
+
+        <% var showColumn = 'years' %>
+
+        <h2 class="tableset__title" data-linkedTable="<%= showColumn %>">Life Expectancy</h2>
+        
+        <%= include("modules/table.tmpl", {
+            data: data.years, 
+            showColumn: showColumn, 
+            columnTitle: 'Life expectancy (yrs)'
+            }) %>
+
+        <% var showColumn = 'bmi' %>
+
+        <h2 class="tableset__title" data-linkedTable="<%= showColumn %>">Obesity</h2>
+        
+        <%= include("modules/table.tmpl", {
+            data: data.bmi, 
+            showColumn: showColumn, 
+            columnTitle: '% obese'
+        }) %>
+
+        <% var showColumn = 'alcohol' %>
+
+        <h2 class="tableset__title" data-linkedTable="<%= showColumn %>">Binge Drinking</h2>
+        
+        <%= include("modules/table.tmpl", {
+            data: data.alcohol, 
+            showColumn: showColumn, 
+            columnTitle: '% binge drinking'
+        }) %>
+
+    </div>
+
+<%= include('includes/bottom.tmpl') %>

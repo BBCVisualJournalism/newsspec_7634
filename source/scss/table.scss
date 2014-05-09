@@ -1,0 +1,92 @@
+.table {
+    width: 100%;
+}
+
+.table__title {
+    text-align: left;
+    font-weight: bold;
+    color: white;
+    font-size: 1.125em;
+    padding: 5px 5px 5px 13px;
+}
+
+.table__title--premier {
+    background-color: #608360;
+}
+
+.table__title--championship {
+    background-color: #47708f;
+}
+
+.table__title--leagueOne {
+    background-color: #d1700e;
+}
+
+.table__title--leagueTwo {
+    background-color: #cc0000;
+}
+
+.table__header {
+    text-align: left;
+    font-weight: bold;
+    background-color: #ddd;
+    padding: 5px;
+}
+
+.table__spacer {
+    height: 22px;
+}
+
+.table {
+    td {
+        padding: 5px;
+    }
+    .table__column--rank {
+        width: 10%;
+        padding-left: 13px;
+        text-align: right;
+    }
+    .table__column--club {
+        width: 50%;
+    }
+    .table__column--metric {
+        width: 40%;
+        text-align: right;
+    }
+    th.table__column--metric {
+        padding-right: 11%;
+    }
+    td.table__column--metric {
+        padding-right: 19%;
+    }
+}
+
+@include respondMinMax(false, 580px) {
+    .table {
+        th.table__column--metric {
+            padding-right: 6%;
+        }
+        td.table__column--metric {
+            padding-right: 13%;
+        }
+    }
+}
+
+@include respondMinMax(false, 450px) {
+    .table {
+        th.table__column--metric {
+            padding-right: 12px;
+        }
+    }
+}
+
+@include respondMinMax(false, 400px) {
+    .table {
+        .table__column--rank {
+            display: none;
+        }
+        .table__column--club {
+            padding-left: 13px;
+        }
+    }
+}

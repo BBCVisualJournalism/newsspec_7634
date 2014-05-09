@@ -1,0 +1,81 @@
+.navigation {
+    margin-bottom: 24px;
+}
+
+.navigation__item {
+    display: block;
+    font-size: 1em;
+    width: 32%;
+    height: 60px;
+    cursor: pointer;
+    float: left;
+    color: #404040;
+    font-weight: bold;
+    margin-right: 1%;
+    border-bottom: 4px solid #ddd;
+    text-decoration: none;
+    text-align: center;
+    padding-bottom: 5px;
+}
+
+.navigation__item:hover {
+    border-color: #999494;
+}
+
+.navigation__item--selected, .navigation__item--selected:hover {
+    border-color: #d1700e;
+}
+
+.navigation__item__icon {
+    background-image: url("../img/sprite.gif");
+    background-repeat: no-repeat;
+    width: 45px;
+    height: 45px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.navigation__item__icon--years {
+    background-position: -30px -4px;
+}
+
+.navigation__item__icon--bmi {
+    background-position: -30px -75px;
+}
+
+.navigation__item__icon--alcohol {
+    background-position: -30px -153px;
+}
+
+.navigation__item__text {
+    display: inline;
+    font-size: 1.125em;
+}
+
+@include respondMinMax(false, 575px) {
+    .navigation__item {
+        height: 80px;
+    }
+
+    .navigation__item__text {
+        display: block;
+        margin-top: 8px;
+    }
+}
+
+@include respondMinMax(false, 430px) {
+    .navigation__item {
+        height: 50px;
+        position: relative;
+    }
+    .navigation__item__icon {
+        display: none;
+    }
+    .navigation__item__text {
+        display: block;
+        position: absolute;
+        bottom: 8px;
+        width: 100%;
+        text-align: center;
+    }
+}
